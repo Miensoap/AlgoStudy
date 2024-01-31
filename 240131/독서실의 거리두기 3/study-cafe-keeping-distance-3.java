@@ -2,7 +2,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
-import java.util.stream.Collectors;
 
 public class Main {
     public static void main(String[] args) {
@@ -13,11 +12,13 @@ public class Main {
         int result = 0;
         List<Integer> inters = calcInter(input);
 
-        if(inters.get(0)>=2) {
+        if(inters.get(inters.size()-1)>=2) { // 가장 먼게
             inters.add(inters.get(0)/2);
-            inters.add(inters.get(0)%2);
+            inters.add(inters.get(0)/2-1);
+            inters.remove(inters.size()-3);
             inters.sort(Integer::compareTo);
         }
+
         result = inters.get(0);
         System.out.println(result+1);
     }
