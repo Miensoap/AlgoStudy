@@ -11,7 +11,12 @@ public class Main {
         String input = sc.nextLine();
         int result = 0;
         List<Integer> inters = calcInter(input);
-
+        
+        if(inters.get(0)==1) {
+            System.out.println(1);
+            return;
+        }
+        
         if(inters.get(0)>=2) { // 가장 먼게
             inters.add(inters.get(0)/2);
             inters.add(inters.get(0)-inters.get(0)/2-1);
