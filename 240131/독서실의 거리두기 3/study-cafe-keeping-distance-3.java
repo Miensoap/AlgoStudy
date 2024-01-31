@@ -12,7 +12,7 @@ public class Main {
         int result = 0;
         List<Integer> inters = calcInter(input);
 
-        if(inters.get(inters.size()-1)>=2) { // 가장 먼게
+        if(inters.get(0)>=2) { // 가장 먼게
             inters.add(inters.get(0)/2);
             inters.add(inters.get(0)-inters.get(0)/2-1);
             inters.remove(0);
