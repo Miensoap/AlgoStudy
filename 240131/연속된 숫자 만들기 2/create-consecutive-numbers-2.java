@@ -14,8 +14,8 @@ public class Main {
         int maxInter = Math.max(arr.get(2)-arr.get(1), arr.get(1)-arr.get(0));
         int minInter = Math.min(arr.get(2)-arr.get(1), arr.get(1)-arr.get(0));
         
-        if(maxInter ==0) result = 0;
-        else if(minInter ==1) result = 1;
+        if(maxInter ==1) result = 0;
+        else if(minInter ==2) result = 1;
         else result = 2;
 
         System.out.println(result);
