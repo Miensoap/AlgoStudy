@@ -14,8 +14,8 @@ public class Main {
 
         if(inters.get(inters.size()-1)>=2) { // 가장 먼게
             inters.add(inters.get(0)/2);
-            inters.add(inters.get(0)/2-1);
-            inters.remove(inters.size()-3);
+            inters.add(inters.get(0)-inters.get(0)/2);
+
             inters.sort(Integer::compareTo);
         }
 
