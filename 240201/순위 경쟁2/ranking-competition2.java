@@ -1,7 +1,7 @@
 import java.util.Scanner;
 
 public class Main {
-    static String glory = "";
+    static String glory = "01";
     static int[] score = {0,0};
     static int cnt = 0;
 
