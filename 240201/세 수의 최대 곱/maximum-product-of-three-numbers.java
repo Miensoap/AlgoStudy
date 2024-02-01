@@ -21,6 +21,7 @@ public class Main {
         if(plus.size()+minus.size()==3){
             System.out.println(plus.stream().reduce(1,(a, b) ->a*b)
             *minus.stream().reduce(1,(a,b)->a*b));
+            return;
         }
 
         if(plus.size()==0) {
