@@ -4,19 +4,24 @@ public class Main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         int n = Integer.parseInt(sc.nextLine());
-        int a;
+        int tmp;
         int result1 =0;
         int result2 =0;
         List<Integer> plus = new ArrayList<>();
         List<Integer> minus = new ArrayList<>();
         for(int i=0; i<n; i++){
-            a = (sc.nextInt());
-            if(a>0) plus.add(a);
-            else minus.add(a);
+            tmp = (sc.nextInt());
+            if(tmp>0) plus.add(tmp);
+            else minus.add(tmp);
         }
         plus.sort(Integer::compareTo);
         minus.sort(Integer::compareTo);
         Collections.reverse(plus);
+
+        if(plus.size()+minus.size()==3){
+            System.out.println(plus.stream().reduce(1,(a, b) ->a*b)
+            *minus.stream().reduce(1,(a,b)->a*b));
+        }
 
         if(plus.size()==0) {
             if(minus.contains(0)) {
