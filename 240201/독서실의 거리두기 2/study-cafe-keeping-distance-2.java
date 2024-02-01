@@ -30,8 +30,17 @@ public class Main {
     private static int calcInter(String[] input) {
         int minInter = 1001;
         int inter = 0;
+        int start = 0;
 
-        for(int i = 1; i< input.length; i++){ // 마지막이 0이면? || i==input.length-1
+        for(int i=0; i<input.length; i++){
+            if(input[i].equals("1")) {
+                start = i;
+                break;
+            }
+        }
+
+        for(int i = start+1; i< input.length; i++){ // 마지막이 0이면? || i==input.length-1
+
             if (input[i].equals("1") ) {
                 minInter = Math.min(inter , minInter);
                 inter=0;
