@@ -5,7 +5,7 @@ public class Main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         sc.nextLine();
-        String[] input = sc.nextLine().split("");
+        String[] input = sc.nextLine().split(" ");
         int cnt = 0;
 
         for (int index = 1; index < input.length; index++) { // 1
@@ -15,13 +15,12 @@ public class Main {
             while ((prev >= 0) && ((int)input[prev].charAt(0) > (int)tmp.charAt(0))) {    // 2
                 input[prev + 1] = input[prev];
                 prev--;
+                cnt++;
             }
 
             input[prev + 1] = tmp;
-            cnt++;
         }
 
         System.out.println(cnt);
-        System.out.println(Arrays.toString(input));
     }
 }
