@@ -2,6 +2,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
+import java.util.stream.Collectors;
 
 public class Main {
     public static void main(String[] args) {
@@ -14,8 +15,8 @@ public class Main {
 
         List<Integer> origin = new ArrayList<>(arr);
         Collections.sort(arr);
-
-        int min = arr.get(1);
+        List<Integer> newarr = arr.stream().distinct().collect(Collectors.toList());
+        int min = newarr.get(1);
         if(origin.indexOf(min)!=origin.lastIndexOf(min)) {
             System.out.println(-1);
             return;
