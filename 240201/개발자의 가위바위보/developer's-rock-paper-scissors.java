@@ -5,7 +5,7 @@ public class Main {
         Scanner sc = new Scanner(System.in);
         int n = Integer.parseInt(sc.nextLine());
         int[][] input = new int[n][2];
-        int[] cnt = new int[3];
+        int[] cnt = new int[2];
         int result = 0;
 
         for(int i=0; i<n; i++){
@@ -13,14 +13,14 @@ public class Main {
             input[i][1] = sc.nextInt();
         }
 
-        // case : 13 32 , 12 23 , 21 13
+        // case : 13 32 21 , 12 23 31
 
         for(int[] game : input){
             int p1=game[0];
             int p2=game[1];
-            if((p1==1 && p2==3) || (p1==3 && p2==2)) cnt[0] = cnt[0]+1;
-            else if((p1==1 && p2 ==2) || (p1==2 && p2==3)) cnt[1]= cnt[1]+1;
-            else cnt[2]=cnt[2]+1;
+            if((p1==1 && p2==3) || (p1==3 && p2==2) || (p1==2 && p2==1)) cnt[0] = cnt[0]+1;
+
+            if((p1==1 && p2 ==2) || (p1==2 && p2==3) || (p1==3 && p2==1)) cnt[1]= cnt[1]+1;
         }
 
         for(int c : cnt){
