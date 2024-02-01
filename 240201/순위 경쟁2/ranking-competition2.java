@@ -2,7 +2,7 @@ import java.util.Scanner;
 
 public class Main {
     static String glory = "";
-    static int[] score = new int{0,0};
+    static int[] score = {0,0};
     static int cnt = 0;
 
     public static void main(String[] args) {
