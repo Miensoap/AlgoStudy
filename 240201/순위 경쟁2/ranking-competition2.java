@@ -24,7 +24,7 @@ public class Main {
 
     static void setGlory() {
         StringBuilder sb = new StringBuilder();
-        int maxScore = 0;
+        int maxScore = -10001;
         for (int j : score) {
             maxScore = Math.max(j, maxScore);
         }
