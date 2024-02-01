@@ -33,16 +33,13 @@ public class Main {
 
         while (!q.isEmpty()) {
             Node p = q.poll();
-            cnt++;
 
             for (int i = 0; i < 4; i++) {
                 int nextR = p.r + dr[i];
                 int nextC = p.c + dc[i];
-
-
                 // R 피해
-                if (indexOk(nextR, nextC) && dp[nextR][nextC] == 0){
-                    if(arr[nextR][nextC] == 'R') return cnt;
+                if (indexOk(nextR, nextC) && dp[nextR][nextC] == 0 && arr[nextR][nextC] != 'R'){
+                    if(arr[nextR][nextC] == 'B') return dp[p.r][p.c];
                     dp[nextR][nextC] = dp[p.r][p.c] + 1;
                     q.add(new Node(nextR, nextC));
                 }
