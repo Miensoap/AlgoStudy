@@ -16,6 +16,11 @@ public class Main {
         List<Integer> origin = new ArrayList<>(arr);
         Collections.sort(arr);
         List<Integer> newarr = arr.stream().distinct().collect(Collectors.toList());
+
+        if(newarr.size()==1){
+            System.out.println(-1);
+            return;
+        }
         int min = newarr.get(1);
         if(origin.indexOf(min)!=origin.lastIndexOf(min)) {
             System.out.println(-1);
