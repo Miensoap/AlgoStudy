@@ -32,18 +32,14 @@ public class Stk_Hm {
         hm.put("key1", hm.getOrDefault("key1", 0)*10);
         List<String> keyList = new ArrayList<>(hm.keySet());
 
-        keyList.sort(new Comparator<String>() {
-            @Override
-            public int compare(String s1, String s2) {
-                int v1 = hm.get(s1);
-                int v2 = hm.get(s2);
+        keyList.sort((s1, s2) -> {
+            int v1 = hm.get(s1);
+            int v2 = hm.get(s2);
 
-                return Integer.compare(v1, v2);
-            }
+            return Integer.compare(v1, v2);
         });
 
         keyList.forEach(System.out::println);
-
     }
 
 }
