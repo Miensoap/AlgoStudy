@@ -1,4 +1,4 @@
-package BackJ.P4673_셀프넘버;
+package BaekJ.P4673_셀프넘버;
 
 import java.util.ArrayList;
 import java.util.List;
