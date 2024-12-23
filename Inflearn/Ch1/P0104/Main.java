@@ -1,7 +1,6 @@
-package Inflearn.P0104;
+package Inflearn.Ch1.P0104;
 
 import java.util.Scanner;
-import java.util.Stack;
 
 public class Main {
     public static void main(String[] args) {

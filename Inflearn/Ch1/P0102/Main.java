@@ -1,4 +1,4 @@
-package Inflearn.P0102;
+package Inflearn.Ch1.P0102;
 
 import java.util.Scanner;
 
