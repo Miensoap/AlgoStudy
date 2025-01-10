@@ -1,4 +1,4 @@
-package Programmers.Run;
+package Run;
 
 import java.util.Arrays;
 
