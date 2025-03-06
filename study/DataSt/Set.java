@@ -1,4 +1,4 @@
-package DataSt;
+package study.DataSt;
 
 import java.util.HashSet;
 import java.util.Iterator;

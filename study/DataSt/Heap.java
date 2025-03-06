@@ -1,4 +1,4 @@
-package DataSt;
+package study.DataSt;
 
 import java.util.Comparator;
 import java.util.PriorityQueue;
