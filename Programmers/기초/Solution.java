@@ -43,3 +43,46 @@ class Solution {
         return -1;
     }
 }
+
+class Solution3 {
+    public String solution(String[] participant, String[] completion) {
+        Map<String, Integer> map = this.toMap(participant);
+        for (String s : completion) {
+            map.put(s, map.get(s) - 1);
+        }
+
+        return map.entrySet().stream()
+                .filter(e -> e.getValue() == 1) // 차이는 1
+                .findAny()
+                .get().getKey();
+    }
+
+    Map<String, int[]> directions = new HashMap<>();
+
+    {
+        directions.put("up", new int[]{0, 1});
+        directions.put("down", new int[]{0, -1});
+        directions.put("left", new int[]{-1, 0});
+        directions.put("right", new int[]{1, 0});
+    }
+
+    public int[] solution(String[] keyinput, int[] boardSize) {
+        int x = 0;
+        int y = 0;
+
+        int maxX = boardSize[0] - 1;
+        int maxY = boardSize[1] - 1;
+
+        for (String key : keyinput) {
+            x += directions.get(key)[0];
+            y += directions.get(key)[1];
+
+            // 위치가 보드 범위를 벗어나지 않도록 보정(클램핑)
+            if (x > maxX) x = maxX;
+            if (x < -maxX) x = -maxX;
+            if (y > maxY) y = maxY;
+            if (y < -maxY) y = -maxY;
+        }
+
+        return new int[]{x, y};
+    }
