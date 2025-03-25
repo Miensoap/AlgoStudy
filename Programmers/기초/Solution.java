@@ -86,3 +86,77 @@ class Solution3 {
 
         return new int[]{x, y};
     }
+
+    public int solution(String before, String after) {
+        return Arrays.stream(before.split("")).sorted().collect(Collectors.joining())
+                .equals(Arrays.stream(after.split("")).sorted().collect(Collectors.joining())) ? 1 : 0;
+    }
+
+    public int solution(String my_string) {
+        return Arrays.stream(my_string.replaceAll("[^0-9]", " ")
+                        .split(" "))
+                .filter(s -> !s.isEmpty())
+                .mapToInt(Integer::parseInt)
+                .sum();
+    }
+
+    public String solution2(String bin1, String bin2) {
+        return Integer.toBinaryString(Integer.parseInt(bin1, 2) + Integer.parseInt(bin2, 2));
+    }
+
+    public int solution2(String[] spell, String[] dic) {
+        String voca = Arrays.stream(spell).sorted().collect(Collectors.joining());
+        return Arrays.stream(dic).anyMatch(s -> Arrays.stream(s.split("")).sorted().collect(Collectors.joining()).equals(voca)) ? 1 : 2;
+    }
+
+    public int solution(int n) {
+        return IntStream.rangeClosed(1, n)
+                .reduce(0, (acc, nb) -> acc + this.remove3(nb + acc))
+                + n;
+    }
+
+    private int remove3(int number) {
+        int plus = 0;
+
+        while ((number + plus) % 3 == 0
+                || String.valueOf(number + plus).contains("3")) {
+            plus += 1;
+        }
+
+        return plus;
+    }
+
+
+    private Map<String, Integer> toMap(String[] array) {
+        Map<String, Integer> map = new HashMap<>();
+        for (String s : array) {
+            if (map.containsKey(s)) map.put(s, map.get(s) + 1);
+            else map.put(s, 1);
+        }
+        return map;
+    }
+
+    private boolean isSolo(String s, String target) {
+        return s.replace(target, "").length() + 1 == s.length();
+    }
+
+    private boolean isSosu(int n) {
+        return getYacsus(n).length == 1;
+    }
+
+    private int[] getYacsus(int n) {
+        return IntStream.rangeClosed(2, n)
+                .filter(i -> n % i == 0)
+                .toArray();
+    }
+
+    private int factorial(int n) {
+        return IntStream.rangeClosed(1, n)
+                .reduce(1, (i, num) -> i * num);
+    }
+
+    private int countK(int number, int k) {
+        return (int) Arrays.stream(String.valueOf(number).split(""))
+                .filter(c -> c.equals(String.valueOf(k)))
+                .count();
+    }
