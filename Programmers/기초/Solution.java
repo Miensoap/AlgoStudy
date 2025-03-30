@@ -160,3 +160,33 @@ class Solution3 {
                 .filter(c -> c.equals(String.valueOf(k)))
                 .count();
     }
+
+    public int solution(int a, int b) {
+        int gcd = gcd(a, b);
+        b /= gcd;
+
+        while (b % 2 == 0) {
+            b /= 2;
+        }
+        while (b % 5 == 0) {
+            b /= 5;
+        }
+
+        return (b == 1) ? 1 : 2;
+    }
+
+    private int gcd(int m, int n) {
+        return m % n == 0 ? n : gcd(n, m % n);
+    }
+
+    public int[] solution(int[] numlist, int n) {
+        Integer[] arr = Arrays.stream(numlist).boxed().toArray(Integer[]::new);
+
+        Comparator<Integer> comparator = Comparator
+                .comparingInt((Integer x) -> Math.abs(x - n))
+                .thenComparing(Comparator.reverseOrder());
+
+        Arrays.sort(arr, comparator);
+
+        return Arrays.stream(arr).mapToInt(Integer::intValue).toArray();
+    }
