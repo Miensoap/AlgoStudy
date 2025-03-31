@@ -1,4 +1,4 @@
-package P120819;
+package 기초.P120819;
 
 import java.util.stream.IntStream;
 

@@ -190,3 +190,67 @@ class Solution3 {
 
         return Arrays.stream(arr).mapToInt(Integer::intValue).toArray();
     }
+
+    static class ScoreWithIndex {
+        int sum;
+        int index;
+
+        ScoreWithIndex(int sum, int index) {
+            this.sum = sum;
+            this.index = index;
+        }
+    }
+
+    public int[] solution(int[][] score) {
+        int n = score.length;
+        ScoreWithIndex[] arr = new ScoreWithIndex[n];
+
+        for (int i = 0; i < n; i++) {
+            arr[i] = new ScoreWithIndex(score[i][0] + score[i][1], i);
+        }
+
+        Arrays.sort(arr, (a, b) -> b.sum - a.sum);
+
+        int[] rank = new int[n];
+        int currentRank = 1;
+        rank[arr[0].index] = currentRank;
+
+        for (int i = 1; i < n; i++) {
+            if (arr[i].sum == arr[i - 1].sum) {
+                rank[arr[i].index] = currentRank;
+            } else {
+                currentRank = i + 1;
+                rank[arr[i].index] = currentRank;
+            }
+        }
+
+        return rank;
+    }
+
+    public String solution(String[] id_pw, String[][] db) {
+        Optional<String[]> candidate = Arrays.stream(db).filter(s -> s[0].equals(id_pw[0])).findAny();
+
+        if (candidate.isEmpty()) return "fail";
+        if (candidate.get()[1].equals(id_pw[1])) return "login";
+        else return "wrong pw";
+    }
+
+    public int solution3(String A, String B) {
+//        int count = 0;
+//        String pushed = A;
+//        for (int i = 0; i < A.length(); i++) {
+//            if (pushed.equals(B)) return count;
+//            pushed = pushString(pushed);
+//            count++;
+//        }
+//
+//        if (!pushed.equals(B)) return -1;
+//        else return count;
+
+        return (B + B).indexOf(A);
+    }
+
+    private String pushString(String origin) {
+        return origin.substring(origin.length() - 1) + origin.substring(0, origin.length() - 1);
+    }
+}
