@@ -2,52 +2,42 @@ import java.util.*;
 
 class Solution {
     public int solution(int n, int[][] costs) {
-        // Kruskal : 간선을 비용 기준으로 정렬 후, 사이클 없이 연결
-        Arrays.sort(costs, Comparator.comparingInt(a -> a[2]));
+        // vs 이차원 배열
+        List<List<int[]>> graph = new ArrayList<>();
+        for (int i = 0; i < n; i++) graph.add(new ArrayList<>());
 
-        // index 번 노드가 parent[index] 집합에 속함
-        int[] parent = new int[n];
-        for (int i = 0; i < n; i++) parent[i] = i; // 초기에는 집합 하나씩
+        for (int[] cost : costs) {
+            int from = cost[0], to = cost[1], weight = cost[2];
+            graph.get(from).add(new int[]{to, weight});
+            graph.get(to).add(new int[]{from, weight});
+        }
+
+        // Prim : 가장 가까운 노드 선택하며 확장
+        boolean[] visited = new boolean[n];
+        PriorityQueue<int[]> pq = new PriorityQueue<>(Comparator.comparingInt(a -> a[1]));
+
+        // 0번 정점에서 시작
+        pq.offer(new int[]{0, 0}); // {노드, 비용}
 
         int totalCost = 0;
-        int edgeCount = 0;
+        
+        // 간선 하나씩만 선택, 모드 연결 보장. -> 큐가 빌때까지 진행
+        while (!pq.isEmpty()) {
+            int[] current = pq.poll();
+            int node = current[0], cost = current[1];
 
-        // 비용이 작은 경로부터 사용
-        for (int[] cost : costs) {
-            int from = cost[0];
-            int to = cost[1];
-            int c = cost[2];
-            
-            // 다른 집합에 속한다 : 이어지지 않음 -> union
-            if (find(parent, from) != find(parent, to)) {
-                union(parent, from, to);
-                
-                totalCost += c;
-                edgeCount++;
-                
-                if (edgeCount == n - 1) break; // MST 완성
+            if (visited[node]) continue;
+
+            visited[node] = true;
+            totalCost += cost;
+
+            for (int[] next : graph.get(node)) {
+                if (!visited[next[0]]) {
+                    pq.offer(next);
+                }
             }
         }
 
         return totalCost;
-    }
-
-    // 해당 노드가 속한 집합 
-    private int find(int[] parent, int node) {
-        if (parent[node] != node) { // 자기자신이 부모가 아니면
-            // path compression : 중간 경로 없이 root로 표시
-            parent[node] = find(parent, parent[node]); 
-        }
-        
-        return parent[node];
-    }
-    
-    // 두 노드의 집합을 하나로 합침 (더 작은쪽으로)
-    private void union(int[] parent, int a, int b) {
-        int rootA = find(parent, a);
-        int rootB = find(parent, b);
-        
-        if (rootA < rootB) parent[rootB] = rootA;
-        else parent[rootA] = rootB;
     }
 }
